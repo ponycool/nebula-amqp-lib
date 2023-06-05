@@ -19,7 +19,7 @@ func initRabbitMQ(c Config) (err error) {
 
 	url := fmt.Sprintf("amqp://%s:%s@%s:%d/",
 		c.User,
-		c.Pwd,
+		c.Password,
 		c.Host,
 		c.Port)
 	conn, err = amqp.Dial(url)

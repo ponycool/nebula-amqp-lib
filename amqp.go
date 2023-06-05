@@ -15,7 +15,7 @@ var (
 
 type MQ struct {
 	Logger *zap.Logger
-	Config Config
+	Config *Config
 }
 
 // InitAmqp 初始化消息队列

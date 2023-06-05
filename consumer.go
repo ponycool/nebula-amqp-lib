@@ -10,7 +10,7 @@ type Consumer struct {
 	Conn    *amqp.Connection
 	Channel *amqp.Channel
 	Tag     string
-	logger  *zap.Logger
+	Logger  *zap.Logger
 	Done    chan error
 }
 
@@ -24,7 +24,7 @@ func (c *Consumer) Shutdown() error {
 		return fmt.Errorf("AMQP connection close error: %s", err)
 	}
 
-	defer c.logger.Info("AMQP shutdown OK")
+	defer c.Logger.Info("AMQP shutdown OK")
 
 	// wait for handle() to exit
 	return <-c.Done

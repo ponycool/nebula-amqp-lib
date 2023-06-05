@@ -14,8 +14,8 @@ var (
 )
 
 type MQ struct {
-	logger *zap.Logger
-	config Config
+	Logger *zap.Logger
+	Config Config
 }
 
 // InitAmqp 初始化消息队列
@@ -26,23 +26,23 @@ func (mq *MQ) InitAmqp() {
 	var err error
 	if initialized {
 		err = fmt.Errorf("[Init] MQ already initialized")
-		mq.logger.Error(err.Error())
+		mq.Logger.Error(err.Error())
 		return
 	}
 
-	switch mq.config.Driver {
+	switch mq.Config.Driver {
 	case Rabbit:
-		err = initRabbitMQ(mq.config)
+		err = initRabbitMQ(mq.Config)
 	default:
-		err = initRabbitMQ(mq.config)
+		err = initRabbitMQ(mq.Config)
 	}
 
 	if err != nil {
-		defer mq.logger.Error(err.Error())
+		defer mq.Logger.Error(err.Error())
 		panic(err.Error())
 	}
 
-	mq.logger.Info(fmt.Sprintf("%s connection successful", mq.config.Driver.String()))
+	mq.Logger.Info(fmt.Sprintf("%s connection successful", mq.Config.Driver.String()))
 }
 
 // GetAmqp 获取消息队列连接

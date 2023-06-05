@@ -6,7 +6,7 @@ import (
 )
 
 // 初始化RabbitMQ
-func initRabbitMQ(c Config) (err error) {
+func initRabbitMQ(c *Config) (err error) {
 	if !c.Enabled {
 		err = fmt.Errorf("[InitMQ] rabbitMQ disabled")
 		return err

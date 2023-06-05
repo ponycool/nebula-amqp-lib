@@ -6,5 +6,5 @@ type Config struct {
 	Host     string `json:"host"`
 	Port     int    `json:"port"`
 	User     string `json:"user"`
-	password string `json:"pwd"`
+	Password string `json:"pwd"`
 }

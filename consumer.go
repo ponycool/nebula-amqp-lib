@@ -20,7 +20,8 @@ func (c *Consumer) Consume(message *Message) error {
 
 	// 在连接关闭时打印出关闭的原因
 	go func() {
-		fmt.Printf("closing: %s", <-c.Conn.NotifyClose(make(chan *amqp.Error)))
+		msg := fmt.Sprintf("closing: %s", <-c.Conn.NotifyClose(make(chan *amqp.Error)))
+		c.Logger.Info(msg)
 	}()
 
 	c.Logger.Info("got Connection, getting Channel")
